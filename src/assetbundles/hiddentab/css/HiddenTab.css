@@ -1,0 +1,6 @@
+#tab-hidden {
+    display: none;
+}
+[data-id="tab-hidden"] {
+    display: none;
+}

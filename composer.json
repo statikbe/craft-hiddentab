@@ -1,0 +1,41 @@
+{
+    "name": "statikbe/craft-hiddentab",
+    "description": "For old time's sake ;)",
+    "type": "craft-plugin",
+    "version": "1.0.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "hidden tab"
+    ],
+    "support": {
+        "docs": "https://github.com/statikbe/craft-hiddentab/blob/master/README.md",
+        "issues": "https://github.com/statikbe/craft-hiddentab/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Statik.be",
+            "homepage": "https://www.statik.be"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "statikbe\\hiddentab\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Hidden Tab",
+        "handle": "hidden-tab",
+        "developer": "Statik.be",
+        "developerUrl": "https://www.statik.be",
+        "documentationUrl": "https://github.com/statikbe/craft-hiddentab/blob/master/README.md",
+        "changelogUrl": "https://raw.githubusercontent.com/statikbe/craft-hiddentab/master/CHANGELOG.md",
+        "class": "statikbe\\hiddentab\\HiddenTab"
+    }
+}
