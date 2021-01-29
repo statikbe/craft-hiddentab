@@ -13,9 +13,13 @@ namespace statikbe\hiddentab;
 
 use Craft;
 use craft\base\Plugin;
+use craft\elements\Entry;
 use craft\events\PluginEvent;
+use craft\events\TemplateEvent;
 use craft\services\Plugins;
+use craft\web\View;
 use statikbe\hiddentab\assetbundles\hiddentab\HiddenTabBundle;
+use statikbe\hiddentab\assetbundles\hud\Hud;
 use yii\base\Event;
 
 /**
@@ -99,10 +103,50 @@ class HiddenTab extends Plugin
                 }
             }
         );
+        $currentUser = Craft::$app->getUser()->getIdentity();
+        if (!$currentUser->admin) {
+
+            Craft::$app->view->hook('cp.elements.element', function (array &$context) {
+                /** @var Entry $element */
+                $element = $context['element'];
+                if (!$element) {
+                    return;
+                }
+                $tabs = array_filter($element->getFieldLayout()->getTabs(), function ($tab) {
+                    if (strtolower($tab->name) === 'hidden') {
+                        return $tab;
+                    }
+                    return;
+                });
+                if (!$tabs) {
+                    return;
+                }
+                $key = array_key_first($tabs);
+                $handles = [];
+                foreach ($tabs[$key]->elements as $e) {
+                    $handles[] = "fields-" . $e->getField()->handle;
+                }
+                $handles = json_encode($handles);
+                Craft::$app->getView()->registerJs("fieldsToHide = $handles;", View::POS_BEGIN);
+                Craft::$app->getView()->registerAssetBundle(Hud::class);
+            });
+        }
 
         $currentUser = Craft::$app->getUser()->getIdentity();
         if (!$currentUser->admin) {
             Craft::$app->view->hook('cp.entries.edit', function (array &$context) {
+                Craft::$app->getView()->registerAssetBundle(HiddenTabBundle::class);
+            });
+            Craft::$app->view->hook('cp.categories.edit', function (array &$context) {
+                Craft::$app->getView()->registerAssetBundle(HiddenTabBundle::class);
+            });
+            Craft::$app->view->hook('cp.assets.edit', function (array &$context) {
+                Craft::$app->getView()->registerAssetBundle(HiddenTabBundle::class);
+            });
+            Craft::$app->view->hook('cp.users.edit', function (array &$context) {
+                Craft::$app->getView()->registerAssetBundle(HiddenTabBundle::class);
+            });
+            Craft::$app->view->hook('cp.globals.edit', function (array &$context) {
                 Craft::$app->getView()->registerAssetBundle(HiddenTabBundle::class);
             });
         }
