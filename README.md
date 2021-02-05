@@ -1,10 +1,10 @@
-# Hidden Tab plugin for Craft CMS 3.x
+# Hidden Tab for Craft CMS
 
-For old time's sake ;)
+When you name a tab "Hidden" (or "hidden"), it will not be visible to non-admin users.
 
 ## Requirements
 
-This plugin requires Craft CMS 3.0.0-beta.23 or later.
+This plugin requires Craft CMS 3.4.0 or later.
 
 ## Installation
 
@@ -13,29 +13,23 @@ To install the plugin, follow these instructions.
 1. Open your terminal and go to your Craft project:
 
         cd /path/to/project
-
-2. Then tell Composer to load the plugin:
-
         composer require statikbe/hidden-tab
+        ./craft plugin/install hidden-tab 
 
-3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Hidden Tab.
+## Support
 
-## Hidden Tab Overview
+The plugin supports:
+- Entries
+- Assets
+- Categories
+- Users
+- Globals
+- [Commerce Products](https://plugins.craftcms.com/commerce)
+- [Commerce Orders](https://plugins.craftcms.com/commerce)
+- [Calendar Events](https://plugins.craftcms.com/calendar)
 
--Insert text here-
+If you have a plugin that includes a custom element type and would like to support Hidden Tab, feel free to create an issue [here](https://github.com/statikbe/craft-hiddentab/issues/new).
 
-## Configuring Hidden Tab
-
--Insert text here-
-
-## Using Hidden Tab
-
--Insert text here-
-
-## Hidden Tab Roadmap
-
-Some things to do, and ideas for potential features:
-
-* Release it
+---
 
 Brought to you by [Statik.be](https://www.statik.be)
