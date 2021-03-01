@@ -12,6 +12,9 @@ class HudService extends Component
 {
     public function hideFields(ElementInterface $element)
     {
+        if(!$element->getFieldLayout()) {
+            return;
+        }
         $tabs = array_filter($element->getFieldLayout()->getTabs(), function ($tab) {
             if (strtolower($tab->name) === 'hidden') {
                 return $tab;
